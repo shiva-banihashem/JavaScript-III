@@ -46,28 +46,30 @@ function Userid(name) {
     this.display = function() {
         console.log(`Hello, ${this.msg}${this.name.toLowerCase()}!`);
         console.log(this);
-    }
+    };
 };
 
-const useridShiva = new Userid('Shiva');
-const useridSheena = new Userid('Sheena');
+const userShiva = new Userid('Shiva');
 
-useridShiva.display();
-useridSheena.display();
+const userSheena = new Userid('Sheena');
+
+
+userShiva.display();
+userSheena.display();
 
 // Principle 4
 
 // code example for Explicit Binding
-function Userid() {
+function Userid2() {
     this.msg = 'your Userid is: ';
 };
-const shiva = new Userid();
+const shiva = new Userid2();
 
-let display = function(name,lname) {
+let display2 = function(name,lname) {
     console.log(`Hello, ${name} ${lname} ${this.msg}${name.toLowerCase()}!`);
     console.log(this);
 }
 
 let nameArg =["Shiva","Banihasehm"];
 console.log("Output using .apply() below ");
-console.log(display.apply(shiva,nameArg ));
+console.log(display2.apply(shiva,nameArg ));

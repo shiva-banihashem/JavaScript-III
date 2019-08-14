@@ -160,8 +160,8 @@ mage.greet(); // Lilith offers a greeting in Elvish.
   Villain.prototype = Object.create(Humanoid.prototype);
   console.log(Villain);
   
-  Villain.prototype.RemoveHPoint = function(points) {
-    return this.healthPoints - points;
+  Villain.prototype.RemoveHPoint = function(points,healthPoints) {
+    return healthPoints - points;
    
   };
   
@@ -171,7 +171,7 @@ mage.greet(); // Lilith offers a greeting in Elvish.
        this.destroy();
     }
     else {
-      console.log(`${this.name} is the winner.`);
+      console.log(`${this.name} is the winner`);
     }
    
   };
@@ -202,8 +202,8 @@ mage.greet(); // Lilith offers a greeting in Elvish.
   Hero.prototype = Object.create(Humanoid.prototype);
   console.log(Hero);
   
-  Hero.prototype.RemoveHPoint = function(points) {
-    return this.healthPoints - points;
+  Hero.prototype.RemoveHPoint = function(points,healthPoints) {
+    return healthPoints - points;
     
   };
   
@@ -213,7 +213,7 @@ mage.greet(); // Lilith offers a greeting in Elvish.
        this.destroy();
     }
     else {
-      console.log(`${this.name} is the winner.`);
+      console.log(`${this.name} is the winner`);
     }
    
   };
@@ -237,10 +237,12 @@ mage.greet(); // Lilith offers a greeting in Elvish.
     });
   
     console.log(newVillain);
-  console.log(newHero);
-  newVillain.healthPoints = newVillain.RemoveHPoint(16);
-  console.log(newVillain.name +  "'s new HealthPoint:" + newVillain.healthPoints);
-  newVillain.checkHealth();
-  newHero.healthPoints= newHero.RemoveHPoint(12);
-  console.log(newHero.name +  "'s new HealthPoint:" +  newHero.healthPoints);     
-  newHero.checkHealth();
+    console.log(newHero);
+    newHero.healthPoints = newVillain.RemoveHPoint(16,newHero.healthPoints);
+    console.log(newHero.name +  "'s new HealthPoint:" + newHero.healthPoints);
+    newHero.checkHealth();
+    newVillain.healthPoints= newHero.RemoveHPoint(12,newVillain.healthPoints);
+    console.log(newVillain.name +  "'s new HealthPoint:" +  newVillain.healthPoints);   
+    newVillain.checkHealth();
+    
+  

@@ -142,7 +142,7 @@ mage.greet(); // Lilith offers a greeting in Elvish.
   console.log(swordsman.team); // The Round Table
   console.log(mage.weapons); // Staff of Shamalama
   console.log(archer.language); // Elvish
-   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
+  console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
@@ -151,3 +151,96 @@ mage.greet(); // Lilith offers a greeting in Elvish.
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+  function Villain(attr) {
+    Humanoid.call(this, attr);
+    
+  
+  };
+  
+  Villain.prototype = Object.create(Humanoid.prototype);
+  console.log(Villain);
+  
+  Villain.prototype.RemoveHPoint = function(points) {
+    return this.healthPoints - points;
+   
+  };
+  
+  Villain.prototype.checkHealth= function() {
+    if (this.healthPoints <=0) {
+      console.log(`Destroying ${this.name}` );
+       this.destroy();
+    }
+    else {
+      console.log(`${this.name} is the winner.`);
+    }
+   
+  };
+  
+  const newVillain = new Villain({
+      createdAt: new Date(),
+      dimensions: {
+        length: 2,
+        width: 4,
+        height: 8,
+      },
+      healthPoints: 15,
+      name: 'Lion',
+      team: 'Forest Kingdom',
+      weapons: [
+        'Bow',
+        'Dagger',
+      ],
+      language: 'Persian',
+    });
+  
+    function Hero(attr) {
+    Humanoid.call(this, attr);
+    
+  
+  };
+  
+  Hero.prototype = Object.create(Humanoid.prototype);
+  console.log(Hero);
+  
+  Hero.prototype.RemoveHPoint = function(points) {
+    return this.healthPoints - points;
+    
+  };
+  
+  Hero.prototype.checkHealth= function() {
+    if (this.healthPoints <=0) {
+      console.log(`Destroying ${this.name}` );
+       this.destroy();
+    }
+    else {
+      console.log(`${this.name} is the winner.`);
+    }
+   
+  };
+  
+  
+  const newHero = new Hero({
+      createdAt: new Date(),
+      dimensions: {
+        length: 2,
+        width: 4,
+        height: 8,
+      },
+      healthPoints: 15,
+      name: 'Bear',
+      team: 'Fire',
+      weapons: [
+        'Bow',
+        'Dagger',
+      ],
+      language: 'Persian',
+    });
+  
+    console.log(newVillain);
+  console.log(newHero);
+  newVillain.healthPoints = newVillain.RemoveHPoint(16);
+  console.log(newVillain.name +  "'s new HealthPoint:" + newVillain.healthPoints);
+  newVillain.checkHealth();
+  newHero.healthPoints= newHero.RemoveHPoint(12);
+  console.log(newHero.name +  "'s new HealthPoint:" +  newHero.healthPoints);     
+  newHero.checkHealth();

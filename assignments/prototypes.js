@@ -23,7 +23,7 @@ function GameObject(attr) {
 }
 
 GameObject.prototype.destroy = function() {
-  console.log(`${this.name} was removed from the game.`);
+  return(`${this.name} was removed from the game.`);
 };
 
 
@@ -42,7 +42,7 @@ function CharacterStats(attr) {
 
 CharacterStats.prototype = Object.create(GameObject.prototype);
 CharacterStats.prototype.takeDamage = function() {
-  console.log(`${this.name} took damage.`);
+  return(`${this.name} took damage.`);
 };
 
 
@@ -99,7 +99,7 @@ Humanoid.prototype.greet = function() {
   });
 
 
-mage.greet(); // Lilith offers a greeting in Elvish.
+console.log(mage.greet()); // Lilith offers a greeting in Elvish.
 
   const swordsman = new Humanoid({
     createdAt: new Date(),
@@ -168,10 +168,10 @@ mage.greet(); // Lilith offers a greeting in Elvish.
   Villain.prototype.checkHealth= function() {
     if (this.healthPoints <=0) {
       console.log(`Destroying ${this.name}` );
-       this.destroy();
+       return(this.destroy());
     }
     else {
-      console.log(`${this.name} is the winner`);
+      return(`${this.name} is the winner`);
     }
    
   };
@@ -210,10 +210,10 @@ mage.greet(); // Lilith offers a greeting in Elvish.
   Hero.prototype.checkHealth= function() {
     if (this.healthPoints <=0) {
       console.log(`Destroying ${this.name}` );
-       this.destroy();
+       return(this.destroy());
     }
     else {
-      console.log(`${this.name} is the winner`);
+      return(`${this.name} is the winner`);
     }
    
   };
@@ -240,9 +240,9 @@ mage.greet(); // Lilith offers a greeting in Elvish.
     console.log(newHero);
     newHero.healthPoints = newVillain.RemoveHPoint(16,newHero.healthPoints);
     console.log(newHero.name +  "'s new HealthPoint:" + newHero.healthPoints);
-    newHero.checkHealth();
+    console.log(newHero.checkHealth());
     newVillain.healthPoints= newHero.RemoveHPoint(12,newVillain.healthPoints);
     console.log(newVillain.name +  "'s new HealthPoint:" +  newVillain.healthPoints);   
-    newVillain.checkHealth();
+    console.log(newVillain.checkHealth());
     
   

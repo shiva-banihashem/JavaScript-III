@@ -18,11 +18,11 @@ the window/Console object.
 
 // code example for Window Binding
 
-function globalFunction() {
+
     console.log(this);
-  }
+
   
-  globalFunction();
+
 
 // Principle 2
 
@@ -31,11 +31,11 @@ function globalFunction() {
 const implicitObj = {
     type:"Error Code",
     msg: function(name,msg) {
-      console.log(`${this.type} for ${name} is: ${msg}`);
-      console.log(this);
+      return(`${this.type} for ${name} is: ${msg}`);
+      
     }
   };
-  implicitObj.msg("Shiva","ReEnter your userid/password");
+  console.log(implicitObj.msg("Shiva","ReEnter your userid/password"));
 
 // Principle 3
 
@@ -44,9 +44,8 @@ function Userid(name) {
     this.msg = 'your Userid is: ';
     this.name = name;
     this.display = function() {
-        console.log(`Hello, ${this.msg}${this.name.toLowerCase()}!`);
-        console.log(this);
-    };
+        return(`Hello, ${this.msg}${this.name.toLowerCase()}!`);
+    }  
 };
 
 const userShiva = new Userid('Shiva');
@@ -54,8 +53,8 @@ const userShiva = new Userid('Shiva');
 const userSheena = new Userid('Sheena');
 
 
-userShiva.display();
-userSheena.display();
+console.log(userShiva.display());
+console.log(userSheena.display());
 
 // Principle 4
 
@@ -66,10 +65,9 @@ function Userid2() {
 const shiva = new Userid2();
 
 let display2 = function(name,lname) {
-    console.log(`Hello, ${name} ${lname} ${this.msg}${name.toLowerCase()}!`);
-    console.log(this);
-}
-
+    return(`Hello, ${name} ${lname} ${this.msg}${name.toLowerCase()}!`);
+    
+};
 let nameArg =["Shiva","Banihasehm"];
 console.log("Output using .apply() below ");
 console.log(display2.apply(shiva,nameArg ));
